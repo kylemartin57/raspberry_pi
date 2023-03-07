@@ -53,7 +53,7 @@ import textwrap
 wrapper = textwrap.TextWrapper(width=22)
 quote = wrapper.wrap(text=data)
 quote = '\n'.join(quote)
-print(quote)
+print(len(quote))
 
 epaper.begin()
 epaper.clearScreen();
@@ -63,13 +63,23 @@ ft.setDisLowerLimite(75) # set display lower limit, adjust this to effect fonts 
 epaper.setExFonts(ft) # init with fonts file
 epaper.setTextFormat(1, epaper.BLACK, epaper.WHITE, 1, 1)
 
-if (len(quote) > 120):
-    epaper.setExFontsFmt(18, 16) # set extension fonts width and height
-    wrapper = textwrap.TextWrapper(width=27)
+if (len(quote) > 200):
+    epaper.setExFontsFmt(13, 13) # set extension fonts width and height
+    wrapper = textwrap.TextWrapper(width=35)
+    quote = wrapper.wrap(text=data)
+    quote = '\n'.join(quote)    
+if (len(quote) > 160 and len(quote) <= 200):
+    epaper.setExFontsFmt(18, 14) # set extension fonts width and height
+    wrapper = textwrap.TextWrapper(width=25)
     quote = wrapper.wrap(text=data)
     quote = '\n'.join(quote)
-   
-else:
+if (len(quote) > 120 and len(quote) <= 160):
+    epaper.setExFontsFmt(18, 16) # set extension fonts width and height
+    wrapper = textwrap.TextWrapper(width=25)
+    quote = wrapper.wrap(text=data)
+    quote = '\n'.join(quote)
+    print('here')
+if (len(quote) <= 120):
     epaper.setExFontsFmt(20, 20) # set extension fonts width and height
 
 # print test

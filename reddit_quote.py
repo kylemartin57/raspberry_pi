@@ -78,9 +78,12 @@ if (len(quote) > 120 and len(quote) <= 160):
     wrapper = textwrap.TextWrapper(width=25)
     quote = wrapper.wrap(text=data)
     quote = '\n'.join(quote)
-    print('here')
 if (len(quote) <= 120):
     epaper.setExFontsFmt(20, 20) # set extension fonts width and height
+    wrapper = textwrap.TextWrapper(width=22)
+    quote = wrapper.wrap(text=data)
+    quote = '\n'.join(quote)
+
 
 # print test
 epaper.setTextCursor(0, 0)
